@@ -1,3 +1,6 @@
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
 /**
@@ -19,7 +22,16 @@ public class ButtonBuilder {
         button.setMinWidth(500.0);
     }
     public Button[] getOpeningButtons() {
+
         Button btn1 = new Button();
+        btn1.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("Hello World!");
+                SceneBuilder.changeScene(1);
+            }
+        });
         Button btn3 = new Button();
         Button btn2 = new Button();
         btn1.setText("What is the Collatz Conjecture?");
@@ -41,6 +53,14 @@ public class ButtonBuilder {
         Button btn3 = new Button();
         Button btn2 = new Button();
         btn1.setText("Return to the main menu");
+        btn1.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("Hello World!");
+                SceneBuilder.changeScene(0);
+            }
+        });
         btn2.setText("Calculate the number of steps for a certain number?");
         btn3.setText("What is the worst number for Collatz Conjecture in a given range?");
         Button[] explanationButtons = {
