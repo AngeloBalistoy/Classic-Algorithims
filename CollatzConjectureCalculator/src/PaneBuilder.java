@@ -1,5 +1,6 @@
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -12,6 +13,14 @@ import javafx.scene.text.TextAlignment;
  * This class builds panes for for the scene we are using.
  */
 public class PaneBuilder {
+    private Text getCalculationInstructions() {
+        Text explanation = new Text("Please input a value below:");
+        Font font = new Font(25);
+        explanation.setFont(font);
+        explanation.setTextAlignment(TextAlignment.CENTER);
+        explanation.setFill(Color.BLACK);
+        return explanation;
+    }
     /**
      * Gets the explanation of the Collatz Conjecture.
      * @return The explanation of the Collatz Conjecture.
@@ -85,6 +94,31 @@ public class PaneBuilder {
         vbox.setAlignment(Pos.CENTER);
         explanationPane.setCenter(vbox);
         explanation.wrappingWidthProperty().bind(explanationPane.widthProperty().subtract(10));
+        return explanationPane;
+    }
+
+    public BorderPane getCalculatePane() {
+        //Setup all objects needed
+        Text calulationInstructions = getCalculationInstructions();
+        BorderPane explanationPane = new BorderPane();
+        ButtonBuilder btnBuilder = new ButtonBuilder();
+        //Add and format the top hbox
+        VBox topVBox = new VBox();
+        topVBox.setAlignment(Pos.CENTER);
+        topVBox.getChildren().add(calulationInstructions);
+        TextField textField = new TextField();
+        textField.setMaxWidth(SceneBuilder.getWindowWidth()*0.75);
+        topVBox.getChildren().add(textField);
+        explanationPane.setTop(topVBox);
+        //Set up center
+        VBox centreVBox = new VBox();
+        Button[] buttons = btnBuilder.getExplanationButtons();
+        for (Button x : buttons) {
+            centreVBox.getChildren().add(x);
+        }
+        centreVBox.setAlignment(Pos.CENTER);
+        explanationPane.setCenter(centreVBox);
+        calulationInstructions.wrappingWidthProperty().bind(explanationPane.widthProperty().subtract(10));
         return explanationPane;
     }
 }

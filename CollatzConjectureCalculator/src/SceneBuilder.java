@@ -47,6 +47,7 @@ public class SceneBuilder {
 
 
     public BorderPane getExplanationPane() {
+        //#TODO Check this.
         BorderPane explanationPane = new BorderPane();
         return explanationPane;
     }
@@ -58,6 +59,9 @@ public class SceneBuilder {
         }
         else if (number == 1) {
             GUI.getStage().setScene(new Scene(panes.getExplanationPane(),WINDOW_WIDTH,WINDOW_HEIGHT));
+        }
+        else if (number == 2) {
+            GUI.getStage().setScene(new Scene(panes.getCalculatePane(),WINDOW_WIDTH,WINDOW_HEIGHT));
         }
         GUI.getStage().show();
     }

@@ -36,6 +36,13 @@ public class ButtonBuilder {
         Button btn2 = new Button();
         btn1.setText("What is the Collatz Conjecture?");
         btn2.setText("Calculate the number of steps for a certain number?");
+        btn2.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                SceneBuilder.changeScene(2);
+            }
+        });
         btn3.setText("What is the worst number for Collatz Conjecture in a given range?");
         Button[] openingButtons = {
                 btn1,
